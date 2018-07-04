@@ -6,11 +6,10 @@ public class Main {
 //        tank3.move();
 
         Moveable tank = new Tank();
-
+        // Aggregation
         Moveable dynLogTank = new DynamicLogTank(tank);
-//        dynLogTank.move();
-
         Moveable dynTimeTank = new DynamicTimeTank(dynLogTank);
-        dynTimeTank.move();
+        Moveable dynTimeTimeTank = new DynamicTimeTank(dynTimeTank);
+        dynTimeTimeTank.move();
     }
 }
