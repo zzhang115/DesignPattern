@@ -5,11 +5,16 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 public class Test {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Tank tank = new Tank();
+    public static void main(String[] args) throws Exception {
         DynamicProxy dpy = new DynamicProxy();
-        InvocationHandler timeInvocHandler = new TimeProxyInvocation(tank);
-        Moveable m = (Moveable) dpy.gntProxyInstance(Moveable.class, timeInvocHandler);
-        m.move();
+//        Tank tank = new Tank();
+//        InvocationHandler timeInvocHandler = new TimeProxyInvocation(tank);
+//        Moveable m = (Moveable) dpy.gntProxyInstance(Moveable.class, timeInvocHandler);
+//        m.move();
+
+        SaleGun saleGun = new SaleGun();
+        InvocationHandler nameRecInvocHandler = new NameRecordInvocation(saleGun);
+        Sale s = (Sale) dpy.gntProxyInstance(Sale.class, nameRecInvocHandler);
+        s.sale();
     }
 }

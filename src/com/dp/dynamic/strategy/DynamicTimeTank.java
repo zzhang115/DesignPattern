@@ -10,7 +10,7 @@ public class DynamicTimeTank implements Moveable {
     }
 
     @Override
-    public void move() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void move() throws Exception {
         System.out.println("Dyn time proxy start running");
         long start = System.currentTimeMillis();
         this.m.move();

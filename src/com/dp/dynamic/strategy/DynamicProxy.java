@@ -21,7 +21,7 @@ public class DynamicProxy {
         for (Method method : methods) {
             String mtdStr = method.getName();
             methodStr += "    @Override" + sep +
-                         "    public void " + mtdStr + "() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {" + sep +
+                         "    public void " + mtdStr + "() throws Exception {" + sep +
                          "        Method md = " + cls.getName() + ".class.getMethod(\"" + mtdStr + "\");" + sep +
                          "        " + "t.invoke(md);" + sep +
                          "    }" + sep;
@@ -30,16 +30,15 @@ public class DynamicProxy {
         String src =
                 "package com.dp.dynamic.strategy;" + sep + sep +
                 "import java.lang.reflect.Method;" + sep +
-                "import java.lang.reflect.InvocationTargetException;" + sep + sep +
-                        "public class NewTankTimeProxy implements " + cls.getName() + " {" + sep +
-                        "    " + invoClassName + " t;" + sep +
+                "public class NewTankTimeProxy implements " + cls.getName() + " {" + sep +
+                "    " + invoClassName + " t;" + sep +
 
-                        "    public NewTankTimeProxy(" + invoClassName + " h) {" + sep +
-                        "        super();" + sep +
-                        "        this.t = h;" + sep +
-                        "    }" + sep +
-                        methodStr + sep +
-                        "}" + sep;
+                "    public NewTankTimeProxy(" + invoClassName + " h) {" + sep +
+                "        super();" + sep +
+                "        this.t = h;" + sep +
+                "    }" + sep +
+                methodStr + sep +
+                "}" + sep;
         String fileName = System.getProperty("user.dir") +
                 "/src/com/dp/dynamic/strategy/NewTankTimeProxy.java";
         System.out.println(fileName);
@@ -65,7 +64,7 @@ public class DynamicProxy {
 
         // c.getNewInstance only get the constructor has no arguments
         Constructor ctr = c.getConstructor(InvocationHandler.class);
-        Moveable m = (Moveable) ctr.newInstance(invoHandler);
+        Object m = ctr.newInstance(invoHandler);
         return m;
 //        // c.getNewInstance only get the constructor has no arguments
 //        Constructor ctr = c.getConstructor(cls);
