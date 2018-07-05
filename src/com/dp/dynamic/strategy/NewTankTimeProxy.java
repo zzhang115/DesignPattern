@@ -12,7 +12,7 @@ public class NewTankTimeProxy implements com.dp.dynamic.strategy.Moveable {
     @Override
     public void move() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method md = com.dp.dynamic.strategy.Moveable.class.getMethod("move");
-        t.invoke(this, md);
+        t.invoke(md);
     }
 
 }

@@ -8,8 +8,8 @@ public class Test {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Tank tank = new Tank();
         DynamicProxy dpy = new DynamicProxy();
-
-        dpy.gntProxyInstance(Moveable.class, new TimeProxyInvocation(tank));
-
+        InvocationHandler timeInvocHandler = new TimeProxyInvocation(tank);
+        Moveable m = (Moveable) dpy.gntProxyInstance(Moveable.class, timeInvocHandler);
+        m.move();
     }
 }

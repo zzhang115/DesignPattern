@@ -23,7 +23,7 @@ public class DynamicProxy {
             methodStr += "    @Override" + sep +
                          "    public void " + mtdStr + "() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {" + sep +
                          "        Method md = " + cls.getName() + ".class.getMethod(\"" + mtdStr + "\");" + sep +
-                         "        " + "t.invoke(this, md);" + sep +
+                         "        " + "t.invoke(md);" + sep +
                          "    }" + sep;
         }
 
@@ -70,10 +70,6 @@ public class DynamicProxy {
 //        // c.getNewInstance only get the constructor has no arguments
 //        Constructor ctr = c.getConstructor(cls);
 //        Moveable m = (Moveable) ctr.newInstance(new Tank());
-//        m.move();
-
-//        cls.getClass() m = (cls.getClass()) ctr.newInstance(new Tank());
-//        cls m = (cls) ctr.newInstance(new Tank());
 //        m.move();
     }
 }
