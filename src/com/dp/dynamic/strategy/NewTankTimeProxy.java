@@ -1,16 +1,18 @@
 package com.dp.dynamic.strategy;
-public class NewTankTimeProxy implements Moveable {
-    Tank t;
-    public NewTankTimeProxy() {
-        t = new Tank();
+
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
+
+public class NewTankTimeProxy implements com.dp.dynamic.strategy.Moveable {
+    com.dp.dynamic.strategy.InvocationHandler t;
+    public NewTankTimeProxy(com.dp.dynamic.strategy.InvocationHandler h) {
+        super();
+        this.t = h;
     }
     @Override
-    public void move() {
-        System.out.println("Time proxy start");
-        long start = System.currentTimeMillis();
-        t.move();
-        long end = System.currentTimeMillis();
-        System.out.println("Total running time:" + (end - start));
-        System.out.println("Time proxy end");
+    public void move() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method md = com.dp.dynamic.strategy.Moveable.class.getMethod("move");
+        t.invoke(this, md);
     }
+
 }

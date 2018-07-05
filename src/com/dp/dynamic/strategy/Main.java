@@ -1,7 +1,9 @@
 package com.dp.dynamic.strategy;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 //        Moveable tank3 = new TankTimeProxy();
 //        tank3.move();
 
